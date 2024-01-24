@@ -114,36 +114,21 @@
   var nestedProduct = () => {
     const nestDiv = document.querySelector(".nested-src");
     if (nestDiv) {
-      fsAttributes.cmsnest.loading.then((result) => {
-        const elements = document.querySelectorAll(".is-finsweet-link");
-        elements.forEach((element) => {
-          element.removeAttribute("href");
-        });
-        const allCaseCardsWrappers = document.querySelectorAll(
-          ".solutions-content_relevant-grid.is-waiter"
-        );
-        allCaseCardsWrappers.forEach((el) => {
-          if (el.childElementCount === 0) {
-            el.classList.add("hide");
-            el.previousElementSibling.classList.add("hide");
-          }
-        });
-      }).catch((error) => {
-        console.error("error:", error);
+      const allSlugLists = document.querySelectorAll('[fs-cmsnest-element="slugs"]');
+      allSlugLists.forEach((list) => {
+        const currentTypeOfEl = list.getAttribute("fs-cmsnest-collection");
+        const currentListValue = list.textContent;
+        if (currentListValue != "") {
+          const currentAppendWaiter = list.parentNode;
+          const arrayForValues = currentListValue.split(",");
+          arrayForValues.forEach((el) => {
+            el = el.replace(/\s+/g, "");
+            const findClonableEl = document.querySelector('[nest-by-name-item="' + el + '"]').cloneNode(true);
+            currentAppendWaiter.appendChild(findClonableEl);
+          });
+        }
       });
-      const allRichTags = document.querySelectorAll(".solutions-content_header-tag-wrapper.hide");
-      allRichTags.forEach((el) => {
-        el.classList.remove("hide");
-        const currentTagsRichWaiter = el.nextElementSibling.querySelector(
-          ".solutions-content_tags-wrapper"
-        );
-        currentTagsRichWaiter.appendChild(el);
-      });
-      const allSectionsOpenButtons = document.querySelectorAll(".button.is-solution");
-      setTimeout(function() {
-        allSectionsOpenButtons[0].click();
-        console.log("test");
-      }, 4e3);
+      document.querySelectorAll(".button.is-solution")[0].click();
     }
   };
 
