@@ -6,6 +6,7 @@ import { nestedProduct } from '$utils/nested-products';
 import { newsTagDuplicate } from '$utils/news-tags-duplicate';
 import { reasonCardsHover } from '$utils/reason-cards-hover';
 import { popupFunct } from '$utils/team-popup';
+import { comingSoonFunc } from '$utils/coming-soon';
 
 window.Webflow ||= [];
 window.Webflow.push(() => {
@@ -17,4 +18,5 @@ window.Webflow.push(() => {
   formDropdownFunc();
   menuFunc();
   newsTagDuplicate();
+  comingSoonFunc();
 });
