@@ -29,7 +29,7 @@ export const comingSoonFunc = () => {
         setTimeout(function () {
           textEl.textContent = originalText;
           // button.style.width = `auto`;
-        }, 5000);
+        }, 2500);
       });
     });
   }

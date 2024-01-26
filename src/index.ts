@@ -7,6 +7,7 @@ import { newsTagDuplicate } from '$utils/news-tags-duplicate';
 import { reasonCardsHover } from '$utils/reason-cards-hover';
 import { popupFunct } from '$utils/team-popup';
 import { comingSoonFunc } from '$utils/coming-soon';
+import { downloadFormFunc } from '$utils/download-form';
 
 window.Webflow ||= [];
 window.Webflow.push(() => {
@@ -19,4 +20,5 @@ window.Webflow.push(() => {
   menuFunc();
   newsTagDuplicate();
   comingSoonFunc();
+  downloadFormFunc();
 });
