@@ -17,8 +17,6 @@ export const nestedProduct = () => {
           if (findClonableEl) {
             const findClonableElAdditional = findClonableEl.cloneNode(true);
             currentAppendWaiter.appendChild(findClonableElAdditional);
-
-            console.log(findClonableEl);
           }
         });
       }
