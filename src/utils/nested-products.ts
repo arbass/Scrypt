@@ -13,10 +13,13 @@ export const nestedProduct = () => {
         const arrayForValues = currentListValue.split(',');
         arrayForValues.forEach((el) => {
           el = el.replace(/\s+/g, '');
-          const findClonableEl = document
-            .querySelector('[nest-by-name-item="' + el + '"]')
-            .cloneNode(true);
-          currentAppendWaiter.appendChild(findClonableEl);
+          const findClonableEl = document.querySelector('[nest-by-name-item="' + el + '"]');
+          if (findClonableEl) {
+            const findClonableElAdditional = findClonableEl.cloneNode(true);
+            currentAppendWaiter.appendChild(findClonableElAdditional);
+
+            console.log(findClonableEl);
+          }
         });
       }
     });
