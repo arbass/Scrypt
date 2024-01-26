@@ -5,7 +5,7 @@ export const nestedProduct = () => {
   if (nestDiv) {
     const allSlugLists = document.querySelectorAll('[fs-cmsnest-element="slugs"]');
     allSlugLists.forEach((list) => {
-      const currentTypeOfEl = list.getAttribute('fs-cmsnest-collection');
+      // const currentTypeOfEl = list.getAttribute('fs-cmsnest-collection');
       const currentListValue = list.textContent;
 
       if (currentListValue != '') {
