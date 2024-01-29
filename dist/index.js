@@ -1,1 +1,307 @@
-"use strict";(()=>{var p=()=>{document.querySelector(".section_faq")&&document.querySelectorAll(".cl-i_faq").forEach(o=>{let e=o.querySelectorAll(".cl-i_faq-svg");e.forEach(n=>{n.classList.add("hide")});let s=Math.floor(Math.random()*e.length);e[s].classList.remove("hide")})};var m=()=>{if(document.querySelector(".input-wrapper.is-dropdown")){let t=document.querySelectorAll(".input-wrapper.is-dropdown");t.forEach(o=>{o.addEventListener("click",function(){t.forEach(e=>{e.classList.remove("z-index-4")}),o.classList.add("z-index-4")})})}};var f=()=>{if(document.querySelector(".input.is-dropdown")){let t=document.querySelectorAll(".input.is-dropdown input");document.querySelectorAll("[option-placeholder-value]").forEach(e=>{e.setAttribute("option-placeholder-value",e.textContent)}),t.forEach(e=>{e.addEventListener("change",function(){let s=e.closest(".input.is-dropdown"),n=s.querySelector("[option-placeholder-value]"),l=s.querySelectorAll("input"),r=[];l.forEach(a=>{if(a.checked&&(a.getAttribute("type")==="radio"?r.push(a.value):r.push(a.name)),r.length){let d=r.join(" "),u;a.getAttribute("type")==="radio"?n.textContent=d:(u=d.replaceAll(" ",", "),n.textContent=u)}else n.textContent=n.getAttribute("option-placeholder-value")})})})}};var h=()=>{if(document.querySelector(".section_menu")){let t=document.querySelectorAll(".menu_nav-item"),o=document.querySelectorAll(".section_menu .dropdown-toggle"),e=new MutationObserver(n=>{n.forEach(l=>{t.forEach(r=>{r.classList.add("menu-disabled");let a=document.querySelectorAll(".section_menu .w--open");a.length>0?a.forEach(i=>{i.closest(".menu_nav-item").classList.remove("menu-disabled")}):t.forEach(i=>{i.classList.remove("menu-disabled")})})})}),s={attributes:!0,childList:!0,subtree:!0};o.forEach(n=>{e.observe(n,s)})}};var y=()=>{document.querySelector(".nested-src")&&(document.querySelectorAll('[fs-cmsnest-element="slugs"]').forEach(o=>{let e=o.textContent;if(e!=""){let s=o.parentNode;e.split(",").forEach(l=>{l=l.replace(/\s+/g,"");let r=document.querySelector('[nest-by-name-item="'+l+'"]');if(r){let a=r.cloneNode(!0);s.appendChild(a)}})}}),document.querySelectorAll(".button.is-solution")[0].click())};var g=()=>{document.querySelector(".clw_news.is-news-page")&&setInterval(function(){document.querySelectorAll(".cl-i_news").forEach(o=>{if(o.classList.contains("tags-ready")===!1){let e=o.querySelectorAll(".news_card-header"),s=e[0],n=e[1].querySelector(".news_card-category-wrapper-parent").cloneNode(!0);n.querySelectorAll(".news_card-category-wrapper").forEach(r=>{r.classList.add("is-no-cover"),r.querySelector(".ui-s").classList.add("is-no-cover")}),s.appendChild(n),o.classList.add("tags-ready")}})},700)};var w=()=>{if(document.querySelector(".card.is-reason")){let t=document.querySelectorAll(".card.is-reason");t.forEach(o=>{o.addEventListener("click",function(){t.forEach(e=>{e.classList.remove("z-index-2"),e.classList.add("opacity-70"),e.classList.contains("opened")&&e.classList.contains("leaved")&&(e.click(),e.classList.add("opacity-70"),o.classList.remove("leaved"))}),o.classList.remove("leaved"),o.classList.add("z-index-2"),o.classList.remove("opacity-70"),o.classList.toggle("opened"),o.classList.contains("opened")?t.forEach(e=>{}):t.forEach(e=>{e.classList.remove("z-index-2"),e.classList.remove("opacity-70")})}),o.addEventListener("mouseleave",function(){o.classList.add("leaved")})})}};var v=()=>{if(document.querySelector("[trigger-popup-slug]")){let t=document.querySelectorAll("[trigger-popup-slug]");document.querySelectorAll(".button.is-visionary-team").forEach(e=>{e.addEventListener("click",function(){e.closest(".visionary-team_popup-wrapper").classList.add("hide")})}),t.forEach(e=>{e.addEventListener("click",function(){let s=e.getAttribute("trigger-popup-slug");document.querySelector('[popup-slug="'+s+'"]').classList.remove("hide")})})}};var S=()=>{let c=document.querySelectorAll(".coming-soon");if(c.length){let t=new Array;c.forEach(o=>{if(window.getComputedStyle(o).display!="none"){let e=o.parentNode;t.push(e)}}),t.forEach(o=>{let e=o.querySelector(".coming-soon"),s=e.textContent,n=o.offsetWidth,l="Coming soon";o.addEventListener("mouseenter",function(){e.textContent=l,n!="0"}),o.addEventListener("mouseleave",function(){setTimeout(function(){e.textContent=s},1e3)})})}};var q=()=>{let c=document.querySelectorAll(".button.is-download-open-trigger");if(c.length){let t=document.querySelector(".download-form-popup"),o=document.querySelector("form"),e=document.querySelector(".popup-close-button"),s=document.querySelector(".download-form-popup-bg"),n=document.querySelector(".button.success-download");e.addEventListener("click",function(){t.classList.add("hide")}),s.addEventListener("click",function(){t.classList.add("hide")}),o.addEventListener("submit",function(){localStorage.setItem("userAuthorized","true"),document.querySelector(".download-file-link").click()}),c.forEach(l=>{l.addEventListener("click",function(){localStorage.getItem("userAuthorized")==="true"?document.querySelector(".download-file-link").click():t.classList.remove("hide")})})}};window.Webflow||(window.Webflow=[]);window.Webflow.push(()=>{y(),p(),w(),m(),v(),f(),h(),g(),S(),q()});})();
+"use strict";
+(() => {
+  // bin/live-reload.js
+  new EventSource(`${"http://localhost:3000"}/esbuild`).addEventListener("change", () => location.reload());
+
+  // src/utils/faq.ts
+  var faq = () => {
+    const faqSection = document.querySelector(".section_faq");
+    if (faqSection) {
+      const faqItems = document.querySelectorAll(".cl-i_faq");
+      faqItems.forEach((faqItem) => {
+        const svgElements = faqItem.querySelectorAll(".cl-i_faq-svg");
+        svgElements.forEach((svgElement) => {
+          svgElement.classList.add("hide");
+        });
+        const randomIndex = Math.floor(Math.random() * svgElements.length);
+        svgElements[randomIndex].classList.remove("hide");
+      });
+    }
+  };
+
+  // src/utils/form.ts
+  var formFunc = () => {
+    const formEl = document.querySelector(".input-wrapper.is-dropdown");
+    if (formEl) {
+      const allInputsDropdown = document.querySelectorAll(".input-wrapper.is-dropdown");
+      allInputsDropdown.forEach((el) => {
+        el.addEventListener("click", function() {
+          allInputsDropdown.forEach((el_drop) => {
+            el_drop.classList.remove("z-index-4");
+          });
+          el.classList.add("z-index-4");
+        });
+      });
+    }
+  };
+
+  // src/utils/form-dropdowns.ts
+  var formDropdownFunc = () => {
+    const dropDownCheck = document.querySelector(".input.is-dropdown");
+    if (dropDownCheck) {
+      const allDropdownOptions = document.querySelectorAll(".input.is-dropdown input");
+      const allPlaceholders = document.querySelectorAll("[option-placeholder-value]");
+      allPlaceholders.forEach((placeholder) => {
+        placeholder.setAttribute("option-placeholder-value", placeholder.textContent);
+      });
+      allDropdownOptions.forEach((input) => {
+        input.addEventListener("change", function() {
+          const inputsParent = input.closest(".input.is-dropdown");
+          const currentPlaceholder = inputsParent.querySelector("[option-placeholder-value]");
+          const currentAllInputs = inputsParent.querySelectorAll("input");
+          const optionArray = [];
+          currentAllInputs.forEach((current_input) => {
+            if (current_input.checked) {
+              if (current_input.getAttribute("type") === "radio") {
+                optionArray.push(current_input.value);
+              } else {
+                optionArray.push(current_input.name);
+              }
+            }
+            if (optionArray.length) {
+              const str = optionArray;
+              const phrase = str.join(" ");
+              let spaced;
+              if (current_input.getAttribute("type") === "radio") {
+                currentPlaceholder.textContent = phrase;
+              } else {
+                spaced = phrase.replaceAll(" ", ", ");
+                currentPlaceholder.textContent = spaced;
+              }
+            } else {
+              currentPlaceholder.textContent = currentPlaceholder.getAttribute(
+                "option-placeholder-value"
+              );
+            }
+          });
+        });
+      });
+    }
+  };
+
+  // src/utils/menu.ts
+  var menuFunc = () => {
+    const menuCheck = document.querySelector(".section_menu");
+    if (menuCheck) {
+      const allMenuItems = document.querySelectorAll(".menu_nav-item");
+      const allDropdowns = document.querySelectorAll(".section_menu .dropdown-toggle");
+      const observer = new MutationObserver((mutationsList) => {
+        mutationsList.forEach((mutation) => {
+          allMenuItems.forEach((el) => {
+            el.classList.add("menu-disabled");
+            const allDropdowns_open = document.querySelectorAll(".section_menu .w--open");
+            if (allDropdowns_open.length > 0) {
+              allDropdowns_open.forEach((el2) => {
+                const closestParent = el2.closest(".menu_nav-item");
+                closestParent.classList.remove("menu-disabled");
+              });
+            } else {
+              allMenuItems.forEach((el2) => {
+                el2.classList.remove("menu-disabled");
+              });
+            }
+          });
+        });
+      });
+      const config = { attributes: true, childList: true, subtree: true };
+      allDropdowns.forEach((dropdown) => {
+        observer.observe(dropdown, config);
+      });
+    }
+  };
+
+  // src/utils/nested-products.ts
+  var nestedProduct = () => {
+    const nestDiv = document.querySelector(".nested-src");
+    if (nestDiv) {
+      const allSlugLists = document.querySelectorAll('[fs-cmsnest-element="slugs"]');
+      allSlugLists.forEach((list) => {
+        const currentListValue = list.textContent;
+        if (currentListValue != "") {
+          const currentAppendWaiter = list.parentNode;
+          const arrayForValues = currentListValue.split(",");
+          arrayForValues.forEach((el) => {
+            el = el.replace(/\s+/g, "");
+            const findClonableEl = document.querySelector('[nest-by-name-item="' + el + '"]');
+            if (findClonableEl) {
+              const findClonableElAdditional = findClonableEl.cloneNode(true);
+              currentAppendWaiter.appendChild(findClonableElAdditional);
+            }
+          });
+        }
+      });
+      document.querySelectorAll(".button.is-solution")[0].click();
+    }
+  };
+
+  // src/utils/news-tags-duplicate.ts
+  var newsTagDuplicate = () => {
+    const newsChecker = document.querySelector(".clw_news.is-news-page");
+    if (newsChecker) {
+      setInterval(function() {
+        const allVisibleCards = document.querySelectorAll(".cl-i_news");
+        allVisibleCards.forEach((card) => {
+          if (card.classList.contains("tags-ready") === false) {
+            const allHeaders = card.querySelectorAll(".news_card-header");
+            const appendWaiter = allHeaders[0];
+            const cloneAbleListOfTags = allHeaders[1].querySelector(".news_card-category-wrapper-parent").cloneNode(true);
+            const cloneAbleItem = cloneAbleListOfTags.querySelectorAll(".news_card-category-wrapper");
+            cloneAbleItem.forEach((item) => {
+              item.classList.add("is-no-cover");
+              const cloneAbleItemText = item.querySelector(".ui-s");
+              cloneAbleItemText.classList.add("is-no-cover");
+            });
+            appendWaiter.appendChild(cloneAbleListOfTags);
+            card.classList.add("tags-ready");
+          }
+        });
+      }, 700);
+    }
+  };
+
+  // src/utils/reason-cards-hover.ts
+  var reasonCardsHover = () => {
+    const reasonCards_el = document.querySelector(".card.is-reason");
+    if (reasonCards_el) {
+      const allReasonCards = document.querySelectorAll(".card.is-reason");
+      allReasonCards.forEach((card) => {
+        card.addEventListener("click", function() {
+          allReasonCards.forEach((el) => {
+            el.classList.remove("z-index-2");
+            el.classList.add("opacity-70");
+            if (el.classList.contains("opened") && el.classList.contains("leaved")) {
+              el.click();
+              el.classList.add("opacity-70");
+              card.classList.remove("leaved");
+            }
+          });
+          card.classList.remove("leaved");
+          card.classList.add("z-index-2");
+          card.classList.remove("opacity-70");
+          card.classList.toggle("opened");
+          if (card.classList.contains("opened")) {
+            allReasonCards.forEach((el) => {
+            });
+          } else {
+            allReasonCards.forEach((el) => {
+              el.classList.remove("z-index-2");
+              el.classList.remove("opacity-70");
+            });
+          }
+        });
+        card.addEventListener("mouseleave", function() {
+          card.classList.add("leaved");
+        });
+      });
+    }
+  };
+
+  // src/utils/team-popup.ts
+  var popupFunct = () => {
+    const popUpEl = document.querySelector("[trigger-popup-slug]");
+    if (popUpEl) {
+      const allPopupTriggers = document.querySelectorAll("[trigger-popup-slug]");
+      const allCloseButtons = document.querySelectorAll(".button.is-visionary-team");
+      allCloseButtons.forEach((button) => {
+        button.addEventListener("click", function() {
+          button.closest(".visionary-team_popup-wrapper").classList.add("hide");
+        });
+      });
+      allPopupTriggers.forEach((trigger) => {
+        trigger.addEventListener("click", function() {
+          const currentSlug = trigger.getAttribute("trigger-popup-slug");
+          document.querySelector('[popup-slug="' + currentSlug + '"]').classList.remove("hide");
+        });
+      });
+    }
+  };
+
+  // src/utils/coming-soon.ts
+  var comingSoonFunc = () => {
+    const comingSoonFuncCheck = document.querySelectorAll(".coming-soon");
+    if (comingSoonFuncCheck.length) {
+      const allButtons = new Array();
+      comingSoonFuncCheck.forEach((el) => {
+        if (window.getComputedStyle(el).display != "none") {
+          const currentParent = el.parentNode;
+          allButtons.push(currentParent);
+        }
+      });
+      allButtons.forEach((button) => {
+        const textEl = button.querySelector(".coming-soon");
+        const originalText = textEl.textContent;
+        const originalWidthOfEl = button.offsetWidth;
+        const newText = "Coming soon";
+        button.addEventListener("mouseenter", function() {
+          textEl.textContent = newText;
+          if (originalWidthOfEl != "0") {
+          }
+        });
+        button.addEventListener("mouseleave", function() {
+          setTimeout(function() {
+            textEl.textContent = originalText;
+          }, 1e3);
+        });
+      });
+    }
+  };
+
+  // src/utils/download-form.ts
+  var downloadFormFunc = () => {
+    const downloadFormFuncCheck = document.querySelectorAll(".button.is-download-open-trigger");
+    if (downloadFormFuncCheck.length) {
+      const popupBody = document.querySelector(".download-form-popup");
+      const currentForm = document.querySelector("form");
+      const closeButton = document.querySelector(".popup-close-button");
+      const closeButtonBg = document.querySelector(".download-form-popup-bg");
+      const successDownloadButton = document.querySelector(".button.success-download");
+      closeButton.addEventListener("click", function() {
+        popupBody.classList.add("hide");
+      });
+      closeButtonBg.addEventListener("click", function() {
+        popupBody.classList.add("hide");
+      });
+      currentForm.addEventListener("submit", function() {
+        localStorage.setItem("userAuthorized", "true");
+        document.querySelector(".download-file-link").click();
+      });
+      downloadFormFuncCheck.forEach((button) => {
+        button.addEventListener("click", function() {
+          if (localStorage.getItem("userAuthorized") === "true") {
+            document.querySelector(".download-file-link").click();
+          } else {
+            popupBody.classList.remove("hide");
+          }
+        });
+      });
+    }
+  };
+
+  // src/utils/share-link.ts
+  var shareFunc = () => {
+    const shareFuncChecker = document.querySelectorAll("[data-url]");
+    if (shareFuncChecker.length) {
+      shareFuncChecker.forEach((el) => {
+        const currentUrl = window.location.href;
+        el.setAttribute("data-url", currentUrl);
+      });
+    }
+  };
+
+  // src/index.ts
+  window.Webflow ||= [];
+  window.Webflow.push(() => {
+    nestedProduct();
+    faq();
+    reasonCardsHover();
+    formFunc();
+    popupFunct();
+    formDropdownFunc();
+    menuFunc();
+    newsTagDuplicate();
+    comingSoonFunc();
+    downloadFormFunc();
+    shareFunc();
+  });
+})();
+//# sourceMappingURL=index.js.map
