@@ -23,5 +23,17 @@ export const nestedProduct = () => {
     });
 
     document.querySelectorAll('.button.is-solution')[0].click();
+
+    const allCaseStudyLink = document.querySelectorAll(
+      '.clw_section_solutions-content .case-study-link a'
+    );
+    allCaseStudyLink.forEach((link) => {
+      const currentHrefValue = link.getAttribute('href');
+      const closestParentCli = link.closest('[current-client-type-slug]');
+      const currentClientTypeSlug = closestParentCli.getAttribute('current-client-type-slug');
+      // console.log(currentClientTypeSlug);
+      link.setAttribute('href', currentHrefValue.replace(/\*/g, currentClientTypeSlug));
+      // console.log(link.getAttribute('href'));
+    });
   }
 };
