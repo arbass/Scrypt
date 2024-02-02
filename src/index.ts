@@ -10,9 +10,11 @@ import { comingSoonFunc } from '$utils/coming-soon';
 import { downloadFormFunc } from '$utils/download-form';
 import { shareFunc } from '$utils/share-link';
 import { testimonialsSectionFunc } from '$utils/product-page_empty-testimonils';
+import { productCheckboxFunc } from '$utils/product-checkbox';
 
 window.Webflow ||= [];
 window.Webflow.push(() => {
+  productCheckboxFunc();
   nestedProduct();
   faq();
   testimonialsSectionFunc();

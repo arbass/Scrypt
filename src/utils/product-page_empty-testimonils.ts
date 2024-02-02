@@ -6,6 +6,9 @@ export const testimonialsSectionFunc = () => {
   );
   if (testimonialsSectionFunc_checking.length) {
   } else {
-    document.querySelector('.section_testimonials-swiper').classList.add('hide');
+    const currentSlider = document.querySelector('.section_testimonials-swiper');
+    if (currentSlider) {
+      currentSlider.classList.add('hide');
+    }
   }
 };
