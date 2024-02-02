@@ -4,7 +4,7 @@ import { formDropdownFunc } from '$utils/form-dropdowns';
 import { menuFunc } from '$utils/menu';
 import { nestedProduct } from '$utils/nested-products';
 import { newsTagDuplicate } from '$utils/news-tags-duplicate';
-import { reasonCardsHover } from '$utils/reason-cards-hover';
+// import { reasonCardsHover } from '$utils/reason-cards-hover';
 import { popupFunct } from '$utils/team-popup';
 import { comingSoonFunc } from '$utils/coming-soon';
 import { downloadFormFunc } from '$utils/download-form';
@@ -14,7 +14,7 @@ window.Webflow ||= [];
 window.Webflow.push(() => {
   nestedProduct();
   faq();
-  reasonCardsHover();
+  // reasonCardsHover();
   formFunc();
   popupFunct();
   formDropdownFunc();
