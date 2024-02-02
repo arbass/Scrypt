@@ -9,11 +9,13 @@ import { popupFunct } from '$utils/team-popup';
 import { comingSoonFunc } from '$utils/coming-soon';
 import { downloadFormFunc } from '$utils/download-form';
 import { shareFunc } from '$utils/share-link';
+import { testimonialsSectionFunc } from '$utils/product-page_empty-testimonils';
 
 window.Webflow ||= [];
 window.Webflow.push(() => {
   nestedProduct();
   faq();
+  testimonialsSectionFunc();
   // reasonCardsHover();
   formFunc();
   popupFunct();
