@@ -11,7 +11,10 @@ export const productCheckboxFunc = () => {
 
         if (currentCategory === window.location.hash) {
           const closestClicker = input.closest('.dropdotwn-options_field');
-          closestClicker.click();
+
+          setTimeout(function () {
+            closestClicker.click();
+          }, 500);
         }
       });
     }
