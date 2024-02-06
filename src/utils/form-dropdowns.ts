@@ -13,9 +13,13 @@ export const formDropdownFunc = () => {
   }
 
   if (dropDownCheck) {
-    let array_optionParams;
-    const dropdownPlaceholder = document.querySelector('[option-placeholder-value]');
-    const dropdownPlaceholderValue = dropdownPlaceholder.textContent;
+    // let array_optionParams;
+    const dropdownPlaceholderAll = document.querySelectorAll('[option-placeholder-value]');
+    dropdownPlaceholderAll.forEach((el) => {
+      el.setAttribute('option-placeholder-value', el.textContent);
+    });
+    // const dropdownPlaceholder = document.querySelector('[option-placeholder-value]');
+    // const dropdownPlaceholderValue = dropdownPlaceholder.textContent;
 
     const allDropdownCheckboxWrappers = document.querySelectorAll('.is-dropdown .checkbox-wrapper');
 
@@ -28,9 +32,17 @@ export const formDropdownFunc = () => {
     const allCheckBoxes = document.querySelectorAll('.is-dropdown .checkbox-icon');
     allCheckBoxes.forEach((checkbox) => {
       checkbox.addEventListener('change', function () {
+        let array_optionParams;
+        const currentParentDropdown = checkbox.closest('.input.is-contact-us-page.is-dropdown');
+        const dropdownPlaceholder = currentParentDropdown.querySelector(
+          '[option-placeholder-value]'
+        );
+        console.log(currentParentDropdown);
+
         array_optionParams = new Array();
         allCheckBoxes.forEach((checkbox_inner) => {
           if (checkbox_inner.checked) {
+            array_optionParams = [];
             array_optionParams.push(checkbox_inner.value);
           }
         });
@@ -38,7 +50,9 @@ export const formDropdownFunc = () => {
         placeholderNewValue = placeholderNewValue.replace(/,(\S)/g, ', $1');
 
         if (placeholderNewValue === '') {
-          dropdownPlaceholder.textContent = dropdownPlaceholderValue;
+          dropdownPlaceholder.textContent = dropdownPlaceholder.getAttribute(
+            'option-placeholder-value'
+          );
         } else {
           dropdownPlaceholder.textContent = placeholderNewValue;
         }
