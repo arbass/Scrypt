@@ -3,46 +3,44 @@
 export const formDropdownFunc = () => {
   const dropDownCheck = document.querySelector('.input.is-dropdown');
   if (dropDownCheck) {
-    const allDropdownOptions = document.querySelectorAll('.input.is-dropdown input');
+    let array_optionParams;
+    const dropdownPlaceholder = document.querySelector('[option-placeholder-value]');
+    const dropdownPlaceholderValue = dropdownPlaceholder.textContent;
 
-    const allPlaceholders = document.querySelectorAll('[option-placeholder-value]');
-    allPlaceholders.forEach((placeholder) => {
-      placeholder.setAttribute('option-placeholder-value', placeholder.textContent);
-    });
+    const allDropdownCheckboxWrappers = document.querySelectorAll('.is-dropdown .checkbox-wrapper');
 
-    allDropdownOptions.forEach((input) => {
-      input.addEventListener('change', function () {
-        const inputsParent = input.closest('.input.is-dropdown');
-        const currentPlaceholder = inputsParent.querySelector('[option-placeholder-value]');
-        const currentAllInputs = inputsParent.querySelectorAll('input');
-        const optionArray = [];
-        currentAllInputs.forEach((current_input) => {
-          if (current_input.checked) {
-            if (current_input.getAttribute('type') === 'radio') {
-              optionArray.push(current_input.value);
-            } else {
-              optionArray.push(current_input.name);
-            }
-          }
-
-          if (optionArray.length) {
-            const str = optionArray;
-            const phrase = str.join(' ');
-            let spaced;
-
-            if (current_input.getAttribute('type') === 'radio') {
-              currentPlaceholder.textContent = phrase;
-            } else {
-              spaced = phrase.replaceAll(' ', ', ');
-              currentPlaceholder.textContent = spaced;
-            }
-          } else {
-            currentPlaceholder.textContent = currentPlaceholder.getAttribute(
-              'option-placeholder-value'
-            );
-          }
-        });
+    allDropdownCheckboxWrappers.forEach((wrapper) => {
+      wrapper.addEventListener('click', function (e) {
+        wrapper.querySelector('.checkbox-icon').click();
       });
     });
+
+    const allCheckBoxes = document.querySelectorAll('.is-dropdown .checkbox-icon');
+    allCheckBoxes.forEach((checkbox) => {
+      checkbox.addEventListener('change', function () {
+        array_optionParams = new Array();
+        allCheckBoxes.forEach((checkbox_inner) => {
+          if (checkbox_inner.checked) {
+            array_optionParams.push(checkbox_inner.value);
+          }
+        });
+        let placeholderNewValue = array_optionParams.toString();
+        placeholderNewValue = placeholderNewValue.replace(/,(\S)/g, ', $1');
+
+        if (placeholderNewValue === '') {
+          dropdownPlaceholder.textContent = dropdownPlaceholderValue;
+        } else {
+          dropdownPlaceholder.textContent = placeholderNewValue;
+        }
+      });
+    });
+
+    //––––
+    if (window.location.hash) {
+      let currentHash = window.location.hash;
+      currentHash = currentHash.slice(1);
+
+      document.querySelector('[value="' + currentHash + '"]').click();
+    }
   }
 };
