@@ -38,6 +38,14 @@
   // src/utils/form-dropdowns.ts
   var formDropdownFunc = () => {
     const dropDownCheck = document.querySelector(".input.is-dropdown");
+    const reqCheckboxes = document.querySelectorAll(".is-sign");
+    if (reqCheckboxes.length) {
+      reqCheckboxes.forEach((el) => {
+        el.addEventListener("click", function() {
+          el.previousElementSibling.click();
+        });
+      });
+    }
     if (dropDownCheck) {
       let array_optionParams;
       const dropdownPlaceholder = document.querySelector("[option-placeholder-value]");
@@ -289,9 +297,26 @@
     }
   };
 
+  // src/utils/tags-remover.ts
+  var tagsRemoverFunc = () => {
+    const tagsRemoverFunc_checker = document.querySelectorAll("form label");
+    if (tagsRemoverFunc_checker.length) {
+      tagsRemoverFunc_checker.forEach((label) => {
+        function removeHTMLTagsFromString(text) {
+          return text.replace(/<[^>]*>/g, "");
+        }
+        let textContent = label.textContent;
+        textContent = textContent.toString();
+        const cleanText = removeHTMLTagsFromString(textContent);
+        label.textContent = cleanText;
+      });
+    }
+  };
+
   // src/index.ts
   window.Webflow ||= [];
   window.Webflow.push(() => {
+    tagsRemoverFunc();
     productCheckboxFunc();
     nestedProduct();
     faq();

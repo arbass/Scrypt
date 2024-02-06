@@ -11,9 +11,11 @@ import { downloadFormFunc } from '$utils/download-form';
 import { shareFunc } from '$utils/share-link';
 import { testimonialsSectionFunc } from '$utils/product-page_empty-testimonils';
 import { productCheckboxFunc } from '$utils/product-checkbox';
+import { tagsRemoverFunc } from '$utils/tags-remover';
 
 window.Webflow ||= [];
 window.Webflow.push(() => {
+  tagsRemoverFunc();
   productCheckboxFunc();
   nestedProduct();
   faq();

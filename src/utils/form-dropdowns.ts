@@ -2,6 +2,16 @@
 
 export const formDropdownFunc = () => {
   const dropDownCheck = document.querySelector('.input.is-dropdown');
+  const reqCheckboxes = document.querySelectorAll('.is-sign');
+
+  if (reqCheckboxes.length) {
+    reqCheckboxes.forEach((el) => {
+      el.addEventListener('click', function () {
+        el.previousElementSibling.click();
+      });
+    });
+  }
+
   if (dropDownCheck) {
     let array_optionParams;
     const dropdownPlaceholder = document.querySelector('[option-placeholder-value]');
