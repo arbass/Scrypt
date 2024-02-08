@@ -31,7 +31,13 @@ export const formDropdownFunc = () => {
           });
           let newPlaceholderValue = placeHolderArray.toString();
           newPlaceholderValue = newPlaceholderValue.replace(/,(\S)/g, ', $1');
-          currentPlaceholder.textContent = newPlaceholderValue;
+          if (newPlaceholderValue != '') {
+            currentPlaceholder.textContent = newPlaceholderValue;
+          } else {
+            currentPlaceholder.textContent = currentPlaceholder.getAttribute(
+              'option-placeholder-value'
+            );
+          }
         });
       });
     });
