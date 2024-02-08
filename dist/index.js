@@ -40,6 +40,16 @@
     const dropDownCheck = document.querySelector(".input.is-dropdown");
     const reqCheckboxes = document.querySelectorAll(".is-sign");
     const contactUsFormChecker = document.querySelector(".section_contact-us form");
+    const formChecker = document.querySelectorAll("form");
+    if (formChecker.length) {
+      formChecker.forEach((form) => {
+        form.addEventListener("submit", function() {
+          const currentSuccesMesage = form.parentNode.querySelector("[form-success-message]");
+          currentSuccesMesage.classList.remove("hide");
+          form.classList.add("hide");
+        });
+      });
+    }
     if (contactUsFormChecker) {
       let checkInputsAndClick2 = function() {
         const isAnyChecked = Array.from(inputs).some((input) => input.checked);
