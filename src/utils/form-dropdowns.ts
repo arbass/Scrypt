@@ -50,51 +50,61 @@ export const formDropdownFunc = () => {
       });
     });
 
-    // // let array_optionParams;
-    // const dropdownPlaceholderAll = document.querySelectorAll('[option-placeholder-value]');
-    // dropdownPlaceholderAll.forEach((el) => {
-    //   el.setAttribute('option-placeholder-value', el.textContent);
-    // });
-    // // const dropdownPlaceholder = document.querySelector('[option-placeholder-value]');
-    // // const dropdownPlaceholderValue = dropdownPlaceholder.textContent;
+    const input = document.querySelector('.is-business input');
+    const errorMessage = document.createElement('div');
+    errorMessage.style.color = 'white';
+    errorMessage.textContent = 'Please use a business email address';
+    errorMessage.style.display = 'none';
+    input.parentNode.insertBefore(errorMessage, input.nextSibling);
 
-    // const allDropdownCheckboxWrappers = document.querySelectorAll('.is-dropdown .checkbox-wrapper');
-
-    // allDropdownCheckboxWrappers.forEach((wrapper) => {
-    //   wrapper.addEventListener('click', function (e) {
-    //     wrapper.querySelector('.checkbox-icon').click();
-    //   });
-    // });
-
-    // const allCheckBoxes = document.querySelectorAll('.is-dropdown .checkbox-icon');
-    // allCheckBoxes.forEach((checkbox) => {
-    //   checkbox.addEventListener('change', function () {
-    //     let array_optionParams;
-    //     const currentParentDropdown = checkbox.closest('.input.is-contact-us-page.is-dropdown');
-    //     const dropdownPlaceholder = currentParentDropdown.querySelector(
-    //       '[option-placeholder-value]'
-    //     );
-    //     console.log(currentParentDropdown);
-
-    //     array_optionParams = new Array();
-    //     allCheckBoxes.forEach((checkbox_inner) => {
-    //       if (checkbox_inner.checked) {
-    //         array_optionParams = [];
-    //         array_optionParams.push(checkbox_inner.value);
-    //       }
-    //     });
-    //     let placeholderNewValue = array_optionParams.toString();
-    //     placeholderNewValue = placeholderNewValue.replace(/,(\S)/g, ', $1');
-
-    //     if (placeholderNewValue === '') {
-    //       dropdownPlaceholder.textContent = dropdownPlaceholder.getAttribute(
-    //         'option-placeholder-value'
-    //       );
-    //     } else {
-    //       dropdownPlaceholder.textContent = placeholderNewValue;
-    //     }
-    //   });
-    // });
+    input.addEventListener('input', function (e) {
+      const nonBusinessEmails = [
+        'gmx.com',
+        'fastmail.com',
+        't-online.de',
+        'web.de',
+        'cox.net',
+        'charter.net',
+        'rediffmail.com',
+        'libero.it',
+        'tiscali.it',
+        'virginmedia.com',
+        'btinternet.com',
+        'shaw.ca',
+        'telus.net',
+        'bigpond.com',
+        'optonline.net',
+        'rogers.com',
+        'freenet.de',
+        'alice.it',
+        'laposte.net',
+        'icloud.com',
+        'zoho.com',
+        'protonmail.com',
+        'qq.com',
+        '163.com',
+        'sberbank.ru',
+        'bk.ru',
+        'inbox.ru',
+        'list.ru',
+        'gmail.com',
+        'yahoo.com',
+        'outlook.com',
+        'hotmail.com',
+        'aol.com',
+        'mail.ru',
+        'yandex.ru',
+      ];
+      const email = e.target.value;
+      const emailDomain = email.split('@')[1];
+      if (nonBusinessEmails.includes(emailDomain)) {
+        input.style.color = 'white';
+        errorMessage.style.display = 'block';
+      } else {
+        input.style.color = 'black';
+        errorMessage.style.display = 'none';
+      }
+    });
 
     //––––
     if (window.location.hash) {
