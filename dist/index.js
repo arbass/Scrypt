@@ -142,9 +142,11 @@
         if (nonBusinessEmails.includes(emailDomain)) {
           errorMessage.style.display = "block";
           document.querySelector(".is-business input").classList.add("is-red");
+          document.querySelector(".is-fake-form-button").classList.add("is-disabled", "pointer-events-off");
         } else {
           errorMessage.style.display = "none";
           document.querySelector(".is-business input").classList.remove("is-red");
+          document.querySelector(".is-fake-form-button").classList.remove("is-disabled", "pointer-events-off");
         }
       });
       if (window.location.hash) {
