@@ -3,6 +3,25 @@
 export const formDropdownFunc = () => {
   const dropDownCheck = document.querySelector('.input.is-dropdown');
   const reqCheckboxes = document.querySelectorAll('.is-sign');
+  const contactUsFormChecker = document.querySelector('.section_contact-us form');
+
+  if (contactUsFormChecker) {
+    const inputs = document.querySelectorAll('.is-product-list input');
+
+    function checkInputsAndClick() {
+      const isAnyChecked = Array.from(inputs).some((input) => input.checked);
+
+      const productChecker = document.querySelector('.product-checker');
+
+      if (productChecker) {
+        productChecker.click();
+      }
+    }
+
+    inputs.forEach((input) => {
+      input.addEventListener('change', checkInputsAndClick);
+    });
+  }
 
   if (reqCheckboxes.length) {
     reqCheckboxes.forEach((el) => {
@@ -19,7 +38,7 @@ export const formDropdownFunc = () => {
       const currentPlaceholder = dropdown.querySelector('[option-placeholder-value]');
       currentPlaceholder.setAttribute('option-placeholder-value', currentPlaceholder.textContent);
 
-      const allCurrentInputs = dropdown.querySelectorAll('input');
+      const allCurrentInputs = dropdown.querySelectorAll('.checkbox-wrapper input');
 
       allCurrentInputs.forEach((input) => {
         input.addEventListener('change', function () {
@@ -98,11 +117,13 @@ export const formDropdownFunc = () => {
       const email = e.target.value;
       const emailDomain = email.split('@')[1];
       if (nonBusinessEmails.includes(emailDomain)) {
-        input.style.color = 'white';
+        // input.style.color = 'white';
         errorMessage.style.display = 'block';
+        document.querySelector('.is-business input').classList.add('is-red');
       } else {
-        input.style.color = 'black';
+        // input.style.color = 'black';
         errorMessage.style.display = 'none';
+        document.querySelector('.is-business input').classList.remove('is-red');
       }
     });
 
