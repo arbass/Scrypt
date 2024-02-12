@@ -20,7 +20,6 @@ window.Webflow.push(() => {
   nestedProduct();
   faq();
   testimonialsSectionFunc();
-  // reasonCardsHover();
   formFunc();
   popupFunct();
   formDropdownFunc();
