@@ -22,7 +22,7 @@ export const nestedProduct = () => {
       }
     });
 
-    document.querySelectorAll('.button.is-solution')[0].click();
+    // document.querySelectorAll('.button.is-solution')[0].click();
 
     const allCaseStudyLink = document.querySelectorAll(
       '.clw_section_solutions-content .case-study-link a'
