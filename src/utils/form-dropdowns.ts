@@ -168,7 +168,7 @@ export const formDropdownFunc = () => {
       let currentHash = window.location.hash;
       currentHash = currentHash.slice(1);
 
-      document.querySelector('[value="' + currentHash + '"]').click();
+      document.querySelector('.is-main-form [value="' + currentHash + '"]').click();
     }
   }
 };

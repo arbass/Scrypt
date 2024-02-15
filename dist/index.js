@@ -171,7 +171,7 @@
       if (window.location.hash) {
         let currentHash = window.location.hash;
         currentHash = currentHash.slice(1);
-        document.querySelector('[value="' + currentHash + '"]').click();
+        document.querySelector('.is-main-form [value="' + currentHash + '"]').click();
       }
     }
   };
@@ -406,9 +406,25 @@
     }
   };
 
+  // src/utils/request-call.ts
+  var requestCallFunc = () => {
+    const requestCallFunc_checker = document.querySelectorAll("[request-call-popup-trigger]");
+    if (requestCallFunc_checker.length) {
+      requestCallFunc_checker.forEach((button) => {
+        button.addEventListener("click", function() {
+          document.querySelector("[request-form-popup]").classList.remove("hide");
+        });
+      });
+    }
+    document.querySelector(".popup-close-button").addEventListener("click", function() {
+      document.querySelector("[request-form-popup]").classList.add("hide");
+    });
+  };
+
   // src/index.ts
   window.Webflow ||= [];
   window.Webflow.push(() => {
+    requestCallFunc();
     tagsRemoverFunc();
     productCheckboxFunc();
     nestedProduct();

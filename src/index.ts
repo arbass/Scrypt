@@ -12,9 +12,11 @@ import { shareFunc } from '$utils/share-link';
 import { testimonialsSectionFunc } from '$utils/product-page_empty-testimonils';
 import { productCheckboxFunc } from '$utils/product-checkbox';
 import { tagsRemoverFunc } from '$utils/tags-remover';
+import { requestCallFunc } from '$utils/request-call';
 
 window.Webflow ||= [];
 window.Webflow.push(() => {
+  requestCallFunc();
   tagsRemoverFunc();
   productCheckboxFunc();
   nestedProduct();
