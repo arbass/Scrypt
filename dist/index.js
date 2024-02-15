@@ -52,14 +52,21 @@
     }
     if (contactUsFormChecker) {
       let checkInputsAndClick2 = function() {
-        const isAnyChecked = Array.from(inputs).some((input) => input.checked);
-        const productChecker = document.querySelector(".product-checker");
-        if (productChecker) {
-          productChecker.click();
+        const checkedInputs = Array.from(inputs).filter((input) => input.checked);
+        if (checkedInputs.length > 0 && !productChecker.checked) {
+          if (productChecker) {
+            productChecker.click();
+          }
+        }
+        if (checkedInputs.length === 0 && productChecker.checked) {
+          if (productChecker) {
+            productChecker.click();
+          }
         }
       };
       var checkInputsAndClick = checkInputsAndClick2;
-      const inputs = document.querySelectorAll(".is-product-list input");
+      const inputs = document.querySelectorAll(".is-product-list .dropdotwn-options input");
+      const productChecker = document.querySelector(".product-checker");
       inputs.forEach((input) => {
         input.addEventListener("change", checkInputsAndClick2);
       });

@@ -17,15 +17,32 @@ export const formDropdownFunc = () => {
   }
 
   if (contactUsFormChecker) {
-    const inputs = document.querySelectorAll('.is-product-list input');
+    const inputs = document.querySelectorAll('.is-product-list .dropdotwn-options input');
+    const productChecker = document.querySelector('.product-checker');
+
+    // function checkInputsAndClick() {
+    //   const isAnyChecked = Array.from(inputs).some((input) => input.checked);
+
+    //   const productChecker = document.querySelector('.product-checker');
+
+    //   if (productChecker) {
+    //     productChecker.click();
+    //   }
+    // }
 
     function checkInputsAndClick() {
-      const isAnyChecked = Array.from(inputs).some((input) => input.checked);
+      const checkedInputs = Array.from(inputs).filter((input) => input.checked);
 
-      const productChecker = document.querySelector('.product-checker');
+      if (checkedInputs.length > 0 && !productChecker.checked) {
+        if (productChecker) {
+          productChecker.click();
+        }
+      }
 
-      if (productChecker) {
-        productChecker.click();
+      if (checkedInputs.length === 0 && productChecker.checked) {
+        if (productChecker) {
+          productChecker.click();
+        }
       }
     }
 
