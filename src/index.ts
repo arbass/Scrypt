@@ -13,9 +13,11 @@ import { testimonialsSectionFunc } from '$utils/product-page_empty-testimonils';
 import { productCheckboxFunc } from '$utils/product-checkbox';
 import { tagsRemoverFunc } from '$utils/tags-remover';
 import { requestCallFunc } from '$utils/request-call';
+import { apiPasswordPage_func } from '$utils/api-password-page';
 
 window.Webflow ||= [];
 window.Webflow.push(() => {
+  apiPasswordPage_func();
   requestCallFunc();
   tagsRemoverFunc();
   productCheckboxFunc();
